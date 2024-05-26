@@ -1,0 +1,39 @@
+
+\python:S125	"Remove this commented out code.(Ş„©J$cb302843-4107-42d2-9313-e0c95540bd3f
+bpython:S125ğ"Remove this commented out code.(»å¿ñúÿÿÿÿJ$94cc8eb9-227b-4afa-ab18-b8e6c5a1af97
+’python:S117»"TRename this local variable "H_r" to match the regular expression ^[_a-z][a-z0-9_]*$.(çÇêJ$4a69dba0-ce72-4bf1-bbcb-19101c5a9b6f
+’python:S117»"TRename this local variable "W_r" to match the regular expression ^[_a-z][a-z0-9_]*$.(çÇêJ$7f57b8b4-a287-4290-ba68-13fc1187852b
+npython:S1481¾"/Replace the unused local variable "C" with "_".(ó«±çJ$5bfa9654-bed1-4a9e-a51e-b87fb7b3b80f
+mpython:S1940è")Use the opposite operator ("!=") instead.(ÙúÕ‹ùÿÿÿÿJ$83753756-a7e2-4e38-becc-25e1e5b21a9d
+jpython:S1481‰"+Replace the unused loop index "i" with "_".(¹½ğJ$c743354a-eceb-4a0f-a3e6-9277cf76d2b0
+mpython:S1940ş")Use the opposite operator ("!=") instead.(ÙúÕ‹ùÿÿÿÿJ$75f252fb-aaaa-48b1-b1f6-33807468ba80
+‘python:S6727â"RProvide the "abs_tol" parameter when using "math.isclose" to compare a value to 0.(­š³³J$32c8dc00-a28e-4434-9f5e-8a1af2f97338
+‘python:S6727å"RProvide the "abs_tol" parameter when using "math.isclose" to compare a value to 0.(«”ÿ—J$f5301115-ca33-4df0-88fe-244de3bf99b2
+˜python:S117ú"URename this local variable "in_C" to match the regular expression ^[_a-z][a-z0-9_]*$.(­¨è´ÿÿÿÿÿJ$3c9a8d12-507b-4a21-8112-0d287816353f
+˜python:S117ú"URename this local variable "in_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(­¨è´ÿÿÿÿÿJ$e09c5937-64ff-440f-967f-8018f87d6204
+˜python:S117ú"URename this local variable "in_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(­¨è´ÿÿÿÿÿJ$c29a8eff-d14d-49af-a905-ca4854915e95
+python:S117…"ZRename this local variable "indices_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$937b52c5-4e5d-4ea1-9cc8-330e5bbbd9bf
+python:S117‡"ZRename this local variable "indices_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$f2127b2a-8205-4594-8e2e-c07b95556870
+™python:S117û"VRename this local variable "out_C" to match the regular expression ^[_a-z][a-z0-9_]*$.(É™ÈïøÿÿÿÿJ$31787341-5300-44d0-bc0f-31b7d4d49032
+™python:S117û"VRename this local variable "out_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(É™ÈïøÿÿÿÿJ$54630352-7f56-4646-927f-ec66f26207d9
+™python:S117û"VRename this local variable "out_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(É™ÈïøÿÿÿÿJ$51ca04ce-bbc1-4c1a-ab3a-4205eda976f7
+python:S117…"[Rename this local variable "sym_len_He" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$2f528e1c-8cae-458c-95b6-63f89846ec50
+python:S117…"[Rename this local variable "sym_len_Hs" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$c8b707ff-8b0a-4f14-bab0-82993bd5e2ce
+python:S117‡"[Rename this local variable "sym_len_We" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$acf7599c-4c8b-4329-a014-b61271380277
+python:S117‡"[Rename this local variable "sym_len_Ws" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$155d6a4a-e8b9-4c90-a1cb-6bb5b472ed98
+python:S117…"ZRename this local variable "weights_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$98c3fe4a-e040-4672-9993-538c5de60f60
+python:S117‡"ZRename this local variable "weights_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$2b790632-f2be-4bd8-97b4-5f83a25f39d0
+“python:S117Å"URename this local variable "in_C" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÚÕÂûJ$3f86219f-95c3-46f2-a472-f24c9106f86e
+“python:S117Å"URename this local variable "in_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÚÕÂûJ$f424c912-7f59-468a-a5db-13ad217836cf
+“python:S117Å"URename this local variable "in_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÚÕÂûJ$434acf07-6b7b-4c99-91cb-1fb5dfb3be11
+python:S117Ğ"ZRename this local variable "indices_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$ba5f8cda-d690-491b-999e-357671e520bc
+python:S117Ò"ZRename this local variable "indices_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$fa149b4e-bebc-44fc-bfb2-112d0648e5b2
+™python:S117Æ"VRename this local variable "out_C" to match the regular expression ^[_a-z][a-z0-9_]*$.(É™ÈïøÿÿÿÿJ$35a33d84-46de-416e-aec4-74f3c857515b
+™python:S117Æ"VRename this local variable "out_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(É™ÈïøÿÿÿÿJ$00d2a6c9-c2d1-4c74-a14f-9a33c7c16bcb
+™python:S117Æ"VRename this local variable "out_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(É™ÈïøÿÿÿÿJ$bbc453fb-a21b-442d-aab0-cb5812b74a79
+python:S117Ğ"[Rename this local variable "sym_len_He" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$fe88c7e3-02d2-419e-bec8-36feeaf57f40
+python:S117Ğ"[Rename this local variable "sym_len_Hs" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$358dc0cc-444e-4caa-924d-4d91fc2b5c9d
+python:S117Ò"[Rename this local variable "sym_len_We" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$19a13186-c3e4-4e78-91d1-ff8143094a18
+python:S117Ò"[Rename this local variable "sym_len_Ws" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$09e432ef-e1b1-4095-9ae3-3e516bc71440
+python:S117Ğ"ZRename this local variable "weights_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ô”äüÿÿÿÿJ$f264ad16-9a78-46a2-be6f-3eebca10b900
+python:S117Ò"ZRename this local variable "weights_W" to match the regular expression ^[_a-z][a-z0-9_]*$.(¤´ÇóşÿÿÿÿJ$990c3010-4fe3-484c-943a-dcfa3eafed37
