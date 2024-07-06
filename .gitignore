@@ -162,3 +162,9 @@ cython_debug/
 # Customize
 *.pt
 *.pth
+*.bin
+PyTorch/data/
+ImageInpainting/test/testsets/
+ImageInpainting/train/trainsets/
+ImageInpainting/train/testsets/
+ImageInpainting/train/superresolution/

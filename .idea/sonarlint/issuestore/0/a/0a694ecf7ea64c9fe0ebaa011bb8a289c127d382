@@ -1,0 +1,13 @@
+
+”python:S117D"WRename this local variable "E_path" to match the regular expression ^[_a-z][a-z0-9_]*$.(×Áë¿J$f9db29fd-49e6-4f69-ace7-66628fa53d84
+”python:S117C"WRename this local variable "L_path" to match the regular expression ^[_a-z][a-z0-9_]*$.(×öìüJ$7f35f4d4-e037-49be-9c05-d9aab3af8f60
+˜python:S117k"VRename this local variable "img_E" to match the regular expression ^[_a-z][a-z0-9_]*$.(­Ý­ÚþÿÿÿÿJ$91a4341c-e998-4753-a0bb-812046e453cb
+˜python:S117Z"VRename this local variable "img_L" to match the regular expression ^[_a-z][a-z0-9_]*$.(…±÷ìûÿÿÿÿJ$372cc046-2b80-458b-a74d-b78650ed5bd9
+—python:S117"ZRename this local variable "testset_L" to match the regular expression ^[_a-z][a-z0-9_]*$.(Éñà±J$ffae4928-8766-4646-8c30-1bcd67d90242
+rpython:S1481\"/Replace the unused local variable "c" with "_".(ç”´„ýÿÿÿÿJ$ec5e4494-9cd7-4110-b87a-08628e075e20
+\python:S125"Remove this commented out code.(¢€å³J$5717a3a4-7e2c-4494-b776-47626a06527e
+\python:S125 "Remove this commented out code.(ÆÆ‰ÔJ$a3c175a7-a493-4fa7-9786-8a14409db9f9
+apython:S125#"Remove this commented out code.(Ö¢æ°ýÿÿÿÿJ$3e141e33-683f-412b-b5ee-bac3e0886535
+\python:S125."Remove this commented out code.(»Á›¦J$86b16a04-bf4c-475b-85ae-6951ead1066c
+\python:S125O"Remove this commented out code.(¸‹ò‹J$700e6822-4d53-4ec5-913f-3cca8203812e
+apython:S125c"Remove this commented out code.(¬ŸýçýÿÿÿÿJ$1df7793e-0ef5-4afb-90a8-2273215875d3

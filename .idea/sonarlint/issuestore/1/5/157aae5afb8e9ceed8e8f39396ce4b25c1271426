@@ -1,0 +1,23 @@
+
+cpython:S125"Remove this commented out code.(¥ƒÌ‚8‡ÈÜŠˆ2J$1cea769c-aade-4393-ad22-51d4eb68175d
+python:S1186"YAdd a nested comment explaining why this method is empty, or complete the implementation.(‚í©…8ñÁ’…ˆ2J$d71cb968-98c2-4241-ae38-4b191e61de0a
+python:S1186"YAdd a nested comment explaining why this method is empty, or complete the implementation.(¡Š98ñÁ’…ˆ2J$c987490d-d799-4daf-bdb6-2ec5496c3440
+£python:S1186"YAdd a nested comment explaining why this method is empty, or complete the implementation.(÷à“Æúÿÿÿÿ8ñÁ’…ˆ2J$f2ec4824-2769-44f6-a2e9-0207b88e5107
+£python:S1186 "YAdd a nested comment explaining why this method is empty, or complete the implementation.(Ïõ®Üÿÿÿÿÿ8ñÁ’…ˆ2J$6ceaf18f-8dd2-4970-bedd-84d0072f24e0
+£python:S1186#"YAdd a nested comment explaining why this method is empty, or complete the implementation.(ã¼©ìıÿÿÿÿ8ñÁ’…ˆ2J$baa06ed0-9cd5-48e1-a890-6476f1ace3a8
+£python:S1186&"YAdd a nested comment explaining why this method is empty, or complete the implementation.(ˆç­ÿÿÿÿÿ8ñÁ’…ˆ2J$4c9fe709-a3f6-466d-a5dd-9fdea3de486b
+python:S11860"YAdd a nested comment explaining why this method is empty, or complete the implementation.(Ö‚Ÿ³8ñÁ’…ˆ2J$e6276ad0-a186-4f1a-b53c-9478d2035625
+python:S11863"YAdd a nested comment explaining why this method is empty, or complete the implementation.(ÅÄ¬8ñÁ’…ˆ2J$3a8f058d-5b83-4f83-96bb-8d19ce1e4294
+python:S11866"YAdd a nested comment explaining why this method is empty, or complete the implementation.(³öç•8ñÁ’…ˆ2J$20718e6d-57ac-460c-a72a-eea3637d04e1
+£python:S11869"YAdd a nested comment explaining why this method is empty, or complete the implementation.(¼Ì¼‰şÿÿÿÿ8ñÁ’…ˆ2J$adec307b-5451-4c4b-b44e-7f840949daa2
+£python:S1186M"YAdd a nested comment explaining why this method is empty, or complete the implementation.(€£îüÿÿÿÿ8ñÁ’…ˆ2J$7c070011-e888-4b55-a258-b3d30728a6b1
+python:S1186P"YAdd a nested comment explaining why this method is empty, or complete the implementation.(£ïé¼8ñÁ’…ˆ2J$6e72844b-be8a-4c19-b2c8-1c04c1b196c0
+£python:S1186S"YAdd a nested comment explaining why this method is empty, or complete the implementation.(¹Æš”şÿÿÿÿ8ñÁ’…ˆ2J$01549d4e-a05c-49b9-8fab-3cffae6635ea
+£python:S1186V"YAdd a nested comment explaining why this method is empty, or complete the implementation.(‚¨•İûÿÿÿÿ8òÁ’…ˆ2J$e8fb9721-7389-4d08-82af-0201e6bf862c
+hpython:S125k"Remove this commented out code.(˜’ô›üÿÿÿÿ8ş¨ßŠˆ2J$b8e70d0e-cf1a-4fce-b621-6a85e8bee909
+bpython:S3457‹"Remove this unused argument.(ƒè¡™8òÁ’…ˆ2J$3b4173d0-e6da-417e-86cd-012e378fd366
+xpython:S1940"-Use the opposite operator ("not in") instead.(…Øñåúÿÿÿÿ8òÁ’…ˆ2J$40afd71f-12d6-4e99-b488-a31115417c45
+¡python:S117Í"\Rename this local variable "netE_params" to match the regular expression ^[_a-z][a-z0-9_]*$.(¸äÔÀ8óÁ’…ˆ2J$3fb74d7f-1455-4345-b82e-34099bcbaa87
+špython:S117Ë"URename this local variable "netG" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ç¦µõ8óÁ’…ˆ2J$43136b0b-37c7-4bce-b59a-be670865ce74
+¦python:S117Ì"\Rename this local variable "netG_params" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÈÊÓÇûÿÿÿÿ8óÁ’…ˆ2J$09e52e25-bed5-4c1f-8486-3c2c801b6211
+–python:S100É"LRename method "update_E" to match the regular expression ^[a-z_][a-z0-9_]*$.(ç÷ªÉûÿÿÿÿ8óÁ’…ˆ2J$58f17144-066d-449a-99d7-3b89c3914be8

@@ -1,0 +1,28 @@
+
+bpython:S125"Remove this commented out code.(˜µÊ8‰õÂŠˆ2J$a90b88ae-4878-44d3-9b2b-3c3efe62bda3
+cpython:S125"Remove this commented out code.(ƒéæÒ8—èÆŠˆ2J$2efdbfe5-04c3-44a3-a670-eec17b56d612
+bpython:S125"Remove this commented out code.(ËÍåb8ÿÜÇŠˆ2J$a4ff49bc-9ccd-49aa-a085-b9c15cf119dd
+™python:S117D"\Rename this local variable "load_path_D" to match the regular expression ^[_a-z][a-z0-9_]*$.(öæ°J$11376a98-dabe-4f2a-b70e-c3cad382ba25
+python:S117:"\Rename this local variable "load_path_E" to match the regular expression ^[_a-z][a-z0-9_]*$.(—¥ôğúÿÿÿÿJ$4acf1575-16fb-4950-8b21-79da6a5c0b9e
+python:S1176"\Rename this local variable "load_path_G" to match the regular expression ^[_a-z][a-z0-9_]*$.(´İÙğÿÿÿÿÿJ$afe121a6-608d-4651-825a-b9a8db901fbe
+§python:S117Q"eRename this local variable "load_path_optimizerD" to match the regular expression ^[_a-z][a-z0-9_]*$.(×é¹²şÿÿÿÿJ$fb19a116-f9fc-41c7-b92c-4ddcd4743591
+¡python:S117M"eRename this local variable "load_path_optimizerG" to match the regular expression ^[_a-z][a-z0-9_]*$.(çÏ£J$90978e22-5f2a-4a62-aa8d-5316dc8d5ad4
+¢python:S117}"`Rename this local variable "F_feature_layer" to match the regular expression ^[_a-z][a-z0-9_]*$.(¡ò²ıÿÿÿÿJ$ce6cd46a-356d-431e-8dfa-b64408ece6ac
+ python:S117"^Rename this local variable "F_lossfn_type" to match the regular expression ^[_a-z][a-z0-9_]*$.(İË¿ÀûÿÿÿÿJ$27d32e8a-a5a8-4c58-b2cb-e79f8e684ae5
+Ÿpython:S117€"aRename this local variable "F_use_input_norm" to match the regular expression ^[_a-z][a-z0-9_]*$.(ñÔğJ$431971ce-83a6-4f80-9773-c34c9918c524
+¤python:S117"aRename this local variable "F_use_range_norm" to match the regular expression ^[_a-z][a-z0-9_]*$.(½Ñ”óùÿÿÿÿJ$69cace80-16a6-4df9-8513-97a3e554c4b8
+œpython:S117~"ZRename this local variable "F_weights" to match the regular expression ^[_a-z][a-z0-9_]*$.(«½°ïøÿÿÿÿJ$cf7bd4ab-9af5-404e-af07-a8c3c508f3dd
+›python:S117k"^Rename this local variable "G_lossfn_type" to match the regular expression ^[_a-z][a-z0-9_]*$.(ü¡ÊÇJ$9c3cb296-4cfe-43d6-98d4-55e83b837103
+¢python:S117"_Rename this local variable "G_optim_params" to match the regular expression ^[_a-z][a-z0-9_]*$.(İ¹éüÿÿÿÿJ$fbc76716-e46e-485d-8669-7f9753b2ab04
+python:S117¿"RRename this parameter "need_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(ı½‰J$8b901299-e5ac-4520-9c1d-03f95c81c9a3
+dpython:S125À"Remove this commented out code.(ŸšÅñ8»öæ‹ˆ2J$26a0efc5-811c-4964-bbc8-58dc4b33c76d
+Cpython:S125Ã"Remove this commented out code.(­ğàÉùÿÿÿÿ8¾Şç‹ˆ2
+špython:S117è"WRename this local variable "D_loss" to match the regular expression ^[_a-z][a-z0-9_]*$.(ü¶ûÿÿÿÿJ$b8a67121-a193-4e12-ae54-b37784aef827
+•python:S117â"WRename this local variable "F_loss" to match the regular expression ^[_a-z][a-z0-9_]*$.(‹öÜ×J$52db5304-fb0f-4586-af9d-4fcd4bfb0c4a
+•python:S117Ş"WRename this local variable "G_loss" to match the regular expression ^[_a-z][a-z0-9_]*$.(ç‰ÊŞJ$28214024-5b3b-4480-81d2-d759fb25d4a8
+špython:S117Ù"]Rename this local variable "loss_G_total" to match the regular expression ^[_a-z][a-z0-9_]*$.(–ŠºJ$a9b2acf2-73ac-413c-9fc7-d85131a3c6e0
+˜python:S3776Ï"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(¥ô«àüÿÿÿÿJ$a35a2ead-9340-4983-9d69-c4015403865f
+bpython:S125©"Remove this commented out code.(Šù§üÿÿÿÿÿJ$25f918c0-dbf2-4845-8c5d-52a8cf7c30e8
+python:S117Ã"RRename this parameter "need_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ş¼Ú÷J$2bebfa38-2e57-4900-b52d-295efd680387
+bpython:S125Ñ"Remove this commented out code.(ˆÂ•ÙüÿÿÿÿJ$9fa3b46c-c192-4e35-b771-6680a8eec63f
+bpython:S125Û"Remove this commented out code.(ˆÂ•ÙüÿÿÿÿJ$247c42a0-3ffe-400d-bed3-b036c3725530

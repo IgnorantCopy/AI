@@ -1,0 +1,17 @@
+
+‹python:S5797q"HReplace this expression; used as a condition it will always be constant.(ãóÃûÿÿÿÿJ$454a6563-d397-462f-8684-9c7dd8a04efb
+†python:S5797"HReplace this expression; used as a condition it will always be constant.(²ñÂKJ$6f167c7e-600e-492e-8f3a-caec4db193bb
+™python:S1177"WRename this local variable "E_path" to match the regular expression ^[_a-z][a-z0-9_]*$.(­æ®ÉûÿÿÿÿJ$a1d27768-fedf-4594-ae2e-250a77c64722
+”python:S1176"WRename this local variable "H_path" to match the regular expression ^[_a-z][a-z0-9_]*$.(ı•ÒŸJ$33c6f7b8-0672-40e2-8296-1880c10f1c64
+•python:S117["XRename this local variable "H_paths" to match the regular expression ^[_a-z][a-z0-9_]*$.(˜Ğ¤ÕJ$b93a33f4-a870-4c47-9c51-3d26450c3314
+”python:S1175"WRename this local variable "L_path" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÈŸ¬ŒJ$7c76eae6-a545-4dc0-b5d8-589109209c3f
+špython:S117Z"XRename this local variable "L_paths" to match the regular expression ^[_a-z][a-z0-9_]*$.(°¿Š¥ùÿÿÿÿJ$31e672b8-93e3-4e12-98e1-3656481bf810
+˜python:S117z"VRename this local variable "img_E" to match the regular expression ^[_a-z][a-z0-9_]*$.(­İ­ÚşÿÿÿÿJ$88501912-50d8-4d9c-bdf8-c298bc5217d1
+–python:S117“"XRename this local variable "img_E_y" to match the regular expression ^[_a-z][a-z0-9_]*$.(¸…¿—J$d02fba57-bd99-450f-b569-bb44834e5751
+™python:S117ƒ"VRename this local variable "img_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(‹øÿÿÿÿJ$753bce88-82c2-4709-913d-590efdf43954
+›python:S117”"XRename this local variable "img_H_y" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÓïºëıÿÿÿÿJ$e8cf861d-3eb4-401b-a03f-0328a0010357
+˜python:S117e"VRename this local variable "img_L" to match the regular expression ^[_a-z][a-z0-9_]*$.(×ŞñşÿÿÿÿJ$020b0ded-dff2-4004-acfa-742e56b05be7
+”python:S117@"WRename this local variable "need_H" to match the regular expression ^[_a-z][a-z0-9_]*$.(®‰ÃJ$0eff6f14-974d-44ea-aeba-67f5290d50a2
+‘python:S3776"TRefactor this function to reduce its Cognitive Complexity from 22 to the 15 allowed.(œŸ²_J$403241ce-7c19-424b-9f93-c8983a46fdac
+qpython:S5727@"3Remove this identity check; it will always be True.(®‰ÃJ$93d7bdf3-d195-4dfd-8c18-785c85f5e77d
+apython:S125l"Remove this commented out code.(êâÀşÿÿÿÿJ$c87049f6-684c-4d70-803f-aedbcb0d9915

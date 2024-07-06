@@ -1,0 +1,11 @@
+
+”python:S117ê"VRename this local variable "E_img" to match the regular expression ^[_a-z][a-z0-9_]*$.(ª¯î¨J$c8819833-9e5d-4847-a921-2500607a2f7c
+”python:S117ë"VRename this local variable "H_img" to match the regular expression ^[_a-z][a-z0-9_]*$.(ò›çßJ$af290778-b84b-4f26-bc02-aec7ad96897a
+python:S117C"\Rename this local variable "init_iter_E" to match the regular expression ^[_a-z][a-z0-9_]*$.(æ™øµÿÿÿÿÿJ$b07fabf8-709e-41a6-aea3-539135091844
+™python:S117B"\Rename this local variable "init_iter_G" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÙäòØJ$8e9eb4cb-7cc2-4309-a98c-d1471e551cf6
+§python:S117F"eRename this local variable "init_iter_optimizerG" to match the regular expression ^[_a-z][a-z0-9_]*$.(—Ö²ıÿÿÿÿJ$c771af9e-116a-47ac-8e62-1c2776c9a06f
+python:S117C"\Rename this local variable "init_path_E" to match the regular expression ^[_a-z][a-z0-9_]*$.(æ™øµÿÿÿÿÿJ$e933ea9c-3b14-463b-80a6-4505e264fa9c
+™python:S117B"\Rename this local variable "init_path_G" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÙäòØJ$6a7d3e5a-daab-429f-9b59-945644583a43
+§python:S117F"eRename this local variable "init_path_optimizerG" to match the regular expression ^[_a-z][a-z0-9_]*$.(—Ö²ıÿÿÿÿJ$3c413037-9e26-4351-929d-e95639832ac8
+upython:S1481á"1Replace the unused local variable "ext" with "_".(ÕÕÜ™úÿÿÿÿJ$334cc4c3-5400-4a4a-8497-c0bdbda3dbfe
+—python:S3776"TRefactor this function to reduce its Cognitive Complexity from 44 to the 15 allowed.(Öç¾ÂşÿÿÿÿJ$ce3946ba-8487-4c6f-b9c8-3b76f7f782de
