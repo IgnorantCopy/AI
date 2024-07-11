@@ -70,7 +70,9 @@ Y
 ,ImageInpainting/train/models/model_plain2.py,7\e\7e70c7238c7bc3ea318ead2da834669d2dbbae2f
 \
 ,ImageInpainting/train/models/select_model.py,2\6\26be8c9170da9a58c113e135710bd5dcb21dfbe7
-P
- ImageInpainting/train/.gitignore,a\4\a47b187f212b5d49332ac647fca8890116ceb6a0
-M
-ImageInpainting/train/LICENSE,8\9\899ac3b9415a37b58a113103f4275dce50b3dc01
+A
+PyTorch/GAN.ipynb,a\e\ae61c59b6ead6d1cdccde88ffde26bb4d8752aa7
+A
+PyTorch/RNN.ipynb,1\1\1114b2258051f23753496f43a5664e45b88a5cc5
+I
+PyTorch/Transformer.ipynb,a\1\a146ed6f98b5d1c9dc4556a2fdedb3269a741d92
