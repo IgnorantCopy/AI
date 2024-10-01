@@ -1,0 +1,6 @@
+
+opython:S14817"*Remove the unused local variable "figure".(╧ъё╛8 Не╥К2J$ca3eed0a-2ef8-44ef-a232-34c7a731ed41
+Эpython:S117R"YRename this local variable "D_losses" to match the regular expression ^[_a-z][a-z0-9_]*$.(тўп╫8Я╜е╥К2J$30ca53de-cbea-480d-ac07-e634470257be
+Эpython:S117S"YRename this local variable "G_losses" to match the regular expression ^[_a-z][a-z0-9_]*$.(┼е▄╥8а╜е╥К2J$7f06865b-84b2-4b80-832a-2e0cb77c47bf
+аpython:S117N"\Rename this local variable "optimizer_D" to match the regular expression ^[_a-z][a-z0-9_]*$.(▄Ю─▄8э█л╥К2J$e272c3c0-5e8d-43b1-8a50-70d55c829398
+еpython:S117M"\Rename this local variable "optimizer_G" to match the regular expression ^[_a-z][a-z0-9_]*$.(╫Ы╠з√    8э█л╥К2J$025ce67d-71b6-419c-acba-4787c0beec04
