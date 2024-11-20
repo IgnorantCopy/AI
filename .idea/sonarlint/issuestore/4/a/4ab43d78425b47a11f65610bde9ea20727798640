@@ -1,16 +1,0 @@
-
-”python:S117í"VRename this local variable "E_img" to match the regular expression ^[_a-z][a-z0-9_]*$.(ª¯î¨J$375d0b2d-4744-448a-bc21-9b34127937d3
-”python:S117î"VRename this local variable "H_img" to match the regular expression ^[_a-z][a-z0-9_]*$.(ò›çßJ$5a7b3555-4701-4a6e-9c4c-8c5b4ad18659
-™python:S117>"\Rename this local variable "init_iter_D" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÅĞ“¼J$a90e408a-a235-422b-be71-657e583cd8e2
-python:S117?"\Rename this local variable "init_iter_E" to match the regular expression ^[_a-z][a-z0-9_]*$.(æ™øµÿÿÿÿÿJ$945fd2fd-5913-4bfd-a1f2-6dac34c619d3
-™python:S117="\Rename this local variable "init_iter_G" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÙäòØJ$de1fae27-7012-4f59-af46-f458cc3397a6
-¢python:S117E"eRename this local variable "init_iter_optimizerD" to match the regular expression ^[_a-z][a-z0-9_]*$.(¢®¾J$f29e77db-a593-4ba9-8db9-94f311df12de
-§python:S117C"eRename this local variable "init_iter_optimizerG" to match the regular expression ^[_a-z][a-z0-9_]*$.(—Ö²ıÿÿÿÿJ$de51d9dc-d1bf-4e06-9579-85543da91429
-™python:S117>"\Rename this local variable "init_path_D" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÅĞ“¼J$4cc1bf15-4f8d-4f3f-8a9d-88c5633172d0
-python:S117?"\Rename this local variable "init_path_E" to match the regular expression ^[_a-z][a-z0-9_]*$.(æ™øµÿÿÿÿÿJ$7f91b813-f631-4bd1-a41b-674b44e21071
-™python:S117="\Rename this local variable "init_path_G" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÙäòØJ$4b33749b-ddb5-441d-8bff-97449f10b738
-¢python:S117E"eRename this local variable "init_path_optimizerD" to match the regular expression ^[_a-z][a-z0-9_]*$.(¢®¾J$71bb27de-3079-4ed6-aca5-c8ffe6af602f
-§python:S117C"eRename this local variable "init_path_optimizerG" to match the regular expression ^[_a-z][a-z0-9_]*$.(—Ö²ıÿÿÿÿJ$85ed8389-b047-44e0-b891-1217624856d5
-upython:S1481ä"1Replace the unused local variable "ext" with "_".(ÕÕÜ™úÿÿÿÿJ$47a1b769-8f6f-4f28-b7cf-48c9838fe2b8
-’python:S3776"TRefactor this function to reduce its Cognitive Complexity from 44 to the 15 allowed.(½¡€ôJ$e48eae02-b387-4a30-973b-b28c146922dd
-apython:S125K"Remove this commented out code.(ŞÓ¢üÿÿÿÿÿJ$fe41eb7d-ba71-46be-a9ef-c39dae968ed1

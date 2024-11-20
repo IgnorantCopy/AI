@@ -1,8 +1,0 @@
-
-—python:S117"URename this local variable "netG" to match the regular expression ^[_a-z][a-z0-9_]*$.(êÏÇøÿÿÿÿJ$3148c061-141b-4f10-9ee6-6134b25248bf
-‘python:S1542"NRename function "define_G" to match the regular expression ^[a-z_][a-z0-9_]*$.(•Å…ŸÿÿÿÿÿJ$ef6c7dc5-9c30-4d50-8b15-04e2b0a4dd65
-’python:S117:"URename this local variable "netD" to match the regular expression ^[_a-z][a-z0-9_]*$.(Œß—±J$fa3869cf-3705-4704-8300-ff686864ef91
-‘python:S15424"NRename function "define_D" to match the regular expression ^[a-z_][a-z0-9_]*$.(š½ÄùÿÿÿÿJ$be4e6052-beee-4ef8-aaa8-b6ec6202f5a5
-—python:S117V"URename this local variable "netF" to match the regular expression ^[_a-z][a-z0-9_]*$.(™¥çßûÿÿÿÿJ$cff13896-fd48-41a8-a334-66e71a6255ff
-‹python:S1542N"NRename function "define_F" to match the regular expression ^[a-z_][a-z0-9_]*$.(Ä¶dJ$4eedccd1-c9ca-4ee2-b913-6c761aab1386
-’python:S3776e"TRefactor this function to reduce its Cognitive Complexity from 32 to the 15 allowed.(«úÿ¯J$db5a4066-e71c-4d93-9ff6-1bc459270016
