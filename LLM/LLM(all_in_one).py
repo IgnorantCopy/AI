@@ -105,8 +105,8 @@ class TransformerBlock(nn.Module):
         self.feedforward_network = FeedforwardNetwork()
 
     def forward(self, x):
-        x = x + self.multi_head_attention(self.layer_norm1(x))
-        x = x + self.feedforward_network(self.layer_norm2(x))
+        x = self.multi_head_attention(self.layer_norm1(x)) + x
+        x = self.feedforward_network(self.layer_norm2(x)) + x
         return x
 
 
