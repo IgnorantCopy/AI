@@ -164,3 +164,8 @@ cython_debug/
 *.pth
 *.bin
 PyTorch/data/
+CV/models/
+CV/U-2-Net/
+StableDiffusion/CLIPtone
+StableDiffusion/instruct_pix2pix
+StableDiffusion/stablediffusion

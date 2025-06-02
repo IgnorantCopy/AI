@@ -1,7 +1,6 @@
 import torch
 from torch.optim import Adam
 import torch.nn.functional as F
-from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torchvision import transforms
 from datasets import load_dataset

@@ -1,0 +1,9 @@
+
+kpython:S1192]"NDefine a constant instead of duplicating this literal 'Simulating...' 6 times.(Ííª“ûÿÿÿÿ
+‹python:S1192_"nDefine a constant instead of duplicating this literal 'SNN accuracy (simulation %d time-steps): %.4f' 6 times.(Ş“ ÷şÿÿÿÿ
+ipython:S117"MRename this parameter "T" to match the regular expression ^[_a-z][a-z0-9_]*$.(‰š¯Âúÿÿÿÿ
+qpython:S3776"TRefactor this function to reduce its Cognitive Complexity from 21 to the 15 allowed.(‰š¯Âúÿÿÿÿ
+>python:S1481,"&Remove the unused local variable "lr".(‰ƒôø
+Epython:S1481‰"'Remove the unused local variable "fig".(ëİÚøÿÿÿÿ
+Bpython:S1481-"*Remove the unused local variable "epochs".(û–Ïğ
+6python:S125E"Remove this commented out code.(ü’«

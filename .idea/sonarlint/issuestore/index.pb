@@ -30,3 +30,5 @@ I
 Mvenv/Lib/site-packages/spikingjelly/activation_based/examples/lif_fc_mnist.py,b\d\bdac8af58d0cc43fc4eb612ae73b271b6c948494
 ƒ
 Svenv/Lib/site-packages/spikingjelly/activation_based/examples/conv_fashion_mnist.py,d\6\d69b143c1cda425a41d510710968ba8180528924
+‚
+Rvenv/Lib/site-packages/spikingjelly/activation_based/ann2snn/examples/cnn_mnist.py,f\1\f135d17485af992838affc58a00454a19ed900bd

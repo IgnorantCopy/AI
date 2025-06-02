@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 import matplotlib.pyplot as plt
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 
@@ -52,7 +52,7 @@ class Discriminator(nn.Module):
 
 def plot_generator_image(model, test_input):
     prediction = np.squeeze(model(test_input).detach().cpu().numpy())
-    figure = plt.figure(figsize=(4, 4))
+    plt.figure(figsize=(4, 4))
     for i in range(16):
         plt.subplot(4, 4, i + 1)
         plt.imshow((prediction[i] + 1) / 2)
@@ -66,21 +66,21 @@ def train():
         transforms.ToTensor(),  # 作用：① 将图像转化为tensor( channel x width x height )，② 归一化到[0,1]
         transforms.Normalize(0.5, 0.5)  # 均值, 方差；减去均值，除以方差，使得数据分布在[-1,1]之间
     ])
-    train_dataset = datasets.MNIST(root='./data', train=True, download=False, transform=transform)
-    dataloader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    train_dataset = datasets.MNIST(root='~/mkh/datasets/', train=True, download=False, transform=transform)
+    dataloader = DataLoader(train_dataset, batch_size=64, shuffle=True, num_workers=2)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     # 定义模型
     generator = Generator().to(device)
     discriminator = Discriminator().to(device)
     # 定义优化器
-    optimizer_G = torch.optim.Adam(generator.parameters(), lr=0.0001)
-    optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=0.0001)
+    optimizer_gen = torch.optim.Adam(generator.parameters(), lr=1e-4, weight_decay=5e-4)
+    optimizer_dis = torch.optim.Adam(discriminator.parameters(), lr=1e-4, weight_decay=5e-4)
     # 定义损失函数
     loss_fn = nn.BCELoss()
 
-    D_losses = []
-    G_losses = []
+    dis_losses = []
+    gen_losses = []
     epochs = 500
     test_input = torch.randn(16, 100, device=device)
     for epoch in range(epochs):
@@ -93,7 +93,7 @@ def train():
             noise = torch.randn(size, 100, device=device)
 
             # 判别器的梯度清零
-            optimizer_D.zero_grad()
+            optimizer_dis.zero_grad()
             # 判别器对真实图片的预测
             real_output = discriminator(image)
             d_real_loss = loss_fn(real_output, torch.ones_like(real_output))
@@ -105,15 +105,15 @@ def train():
             d_fake_loss.backward()
             # 判别器的损失
             d_loss = d_real_loss + d_fake_loss
-            optimizer_D.step()
+            optimizer_dis.step()
 
             # 生成器的梯度清零
-            optimizer_G.zero_grad()
+            optimizer_gen.zero_grad()
             # 生成器对生成图片的预测
             fake_output = discriminator(fake_image)
             g_loss = loss_fn(fake_output, torch.ones_like(fake_output))
             g_loss.backward()
-            optimizer_G.step()
+            optimizer_gen.step()
 
             with torch.no_grad():
                 d_epoch_loss += d_loss
@@ -121,8 +121,8 @@ def train():
         with torch.no_grad():
             d_epoch_loss /= count
             g_epoch_loss /= count
-            D_losses.append(d_epoch_loss.item())
-            G_losses.append(g_epoch_loss.item())
+            dis_losses.append(d_epoch_loss.item())
+            gen_losses.append(g_epoch_loss.item())
             print(f"Epoch {epoch + 1}/{epochs}, D_loss: {d_epoch_loss.item():.4f}, G_loss: {g_epoch_loss.item():.4f}")
             plot_generator_image(generator, test_input)
 
