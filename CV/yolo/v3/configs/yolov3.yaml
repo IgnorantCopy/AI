@@ -1,0 +1,675 @@
+model:
+  # Down1
+  - name: conv
+    batch_norm: 1
+    out_channels: 32
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 64
+    kernel_size: 3
+    stride: 2
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 32
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 64
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Down2
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 3
+    stride: 2
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 64
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv1
+  - name: conv
+    batch_norm: 1
+    out_channels: 64
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Down3
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 2
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv2
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # conv3
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv4
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv5
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv6
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv7
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv8
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Down4
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 2
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv9
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv10
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv11
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv12
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv13
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv14
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv15
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Down5
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv16
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 1024
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv17
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 1024
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Conv18
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 1024
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: residual
+    from: -3
+    activation: linear
+  # Neck
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 1024
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 1024
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 1024
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 255
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: linear
+  # Yolo1
+  - name: yolo
+    anchors: [[116, 90], [156, 198], [373, 326]]
+    classes: 80
+    jitter: 0.3
+    ignore_thresh: 0.7
+    truth_thresh: 1
+    random: 1
+  - name: route
+    layers: [-4]
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: upsample
+    stride: 2
+  - name: route
+    layers: [-1, 61]
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 512
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 255
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: linear
+  # Yolo2
+  - name: yolo
+    anchors: [[30, 61], [62, 45], [59, 119]]
+    classes: 80
+    jitter: 0.3
+    ignore_thresh: 0.7
+    truth_thresh: 1
+    random: 1
+  - name: route
+    layers: [-4]
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: upsample
+    stride: 2
+  - name: route
+    layers: [-1, 36]
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 128
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 256
+    kernel_size: 3
+    stride: 1
+    padding: 1
+    activation: leaky
+  - name: conv
+    batch_norm: 1
+    out_channels: 255
+    kernel_size: 1
+    stride: 1
+    padding: 0
+    activation: linear
+  # Yolo3
+  - name: yolo
+    anchors: [[10, 13], [16, 30], [33, 23]]
+    classes: 80
+    jitter: 0.3
+    ignore_thresh: 0.7
+    truth_thresh: 1
+    random: 1
+
+
+train:
+  batch_size: 16
+  image_size: 416
+  channels: 3
+  subdivisions: 1
+  epochs: 100
+  momentum: 0.9
+  weight_decay: 0.0005
+  angle: 0
+  saturation: 1.5
+  exposure: 1.5
+  hue: 0.1
+
+  learning_rate: 0.0001
+  burn_in: 1000
+  policy: steps
+  steps: [60000, 80000]
+  scales: [0.1, 0.1]
+
+data:
+  root: /home/nju-student/mkh/datasets/coco2014
+  image_root: /home/nju-student/mkh/datasets/coco2014/images
+  label_root: /home/nju-student/mkh/datasets/coco2014/labels
+  train_label: train2014
+  valid_label: val2014

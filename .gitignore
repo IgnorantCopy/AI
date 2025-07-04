@@ -166,6 +166,8 @@ cython_debug/
 PyTorch/data/
 CV/models/
 CV/U-2-Net/
+CV/yolo/PyTorch-YOLOv3/
 StableDiffusion/CLIPtone
 StableDiffusion/instruct_pix2pix
 StableDiffusion/stablediffusion
+Transformer/SwinTransformer/Swin-Transformer

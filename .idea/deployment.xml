@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="nju-student@10.52.60.75:22 password" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="nju-student@10.52.60.75:22 password (2)" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
       <paths name="nju-student@10.52.60.75:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/nju-student/mkh/codes/AI" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="nju-student@10.52.60.75:22 password (2)">
         <serverdata>
           <mappings>
             <mapping deploy="/home/nju-student/mkh/codes/AI" local="$PROJECT_DIR$" />
