@@ -167,7 +167,8 @@ PyTorch/data/
 CV/models/
 CV/U-2-Net/
 CV/yolo/PyTorch-YOLOv3/
-StableDiffusion/CLIPtone
-StableDiffusion/instruct_pix2pix
-StableDiffusion/stablediffusion
-Transformer/SwinTransformer/Swin-Transformer
+Diffusion/CLIPtone/
+Diffusion/instruct_pix2pix/
+Diffusion/stablediffusion/
+Diffusion/open_clip/
+Diffusion/clip_from_scratch/data/*.tsv

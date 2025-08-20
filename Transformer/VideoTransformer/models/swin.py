@@ -34,13 +34,14 @@ def window_reverse(windows, window_size, h, w):
     return x
 
 
-class WindowAttention(nn.Module):
-    def __init__(self, dim, window_size, heads: int, qkv_bias=True, attn_dropout=0., proj_dropout=0.):
+class WindowAttention3D(nn.Module):
+    def __init__(self, dim, window_size, heads: int, qkv_bias=True, scale=None, attn_dropout=0., proj_dropout=0.):
         super().__init__()
         self.dim = dim
-        self.window_size = (window_size, window_size) if isinstance(window_size, int) else window_size
+        self.window_size = (window_size, window_size, window_size) if isinstance(window_size, int) else window_size
         self.heads = heads
         self.qkv_bias = qkv_bias
+        self.scale = scale or (dim // heads) ** -0.5
 
         self.scale = nn.Parameter(torch.log(10 * torch.ones((heads, 1, 1))), requires_grad=True)
         # relative continuous position bias
@@ -127,7 +128,7 @@ class SwinTransformerBlock(nn.Module):
             self.window_size = min(self.input_resolution)
 
         self.norm1 = norm(dim)
-        self.attention = WindowAttention(dim, window_size, heads, qkv_bias, attn_dropout, proj_dropout=dropout)
+        self.attention = WindowAttention3D(dim, window_size, heads, qkv_bias, attn_dropout, proj_dropout=dropout)
         self.drop_path = DropPath(dropout_path) if dropout_path > 0 else nn.Identity()
         self.norm2 = norm(dim)
         self.ff = FeedForward(dim, hidden_channels=int(dim * ff_ratio), activation=activation, dropout=dropout)

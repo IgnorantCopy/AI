@@ -1,0 +1,20 @@
+model_name: ViT_B_16
+
+data_root: D:/DataSets/Img-Text/ConceptualCaptions
+
+train:
+  batch_size: 1024
+  num_workers: 4
+  lr: 0.01
+  epochs: 100
+  scheduler:
+    name: ReduceLROnPlateau
+    factor: 0.5
+    patience: 10
+    mode: min
+    min_lr: 0.00001
+  loss:
+    name: CLIPLoss
+  optimizer:
+    name: Adam
+    weight_decay: 0.0005
