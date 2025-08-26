@@ -10,6 +10,8 @@ from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
 from utils.logger import Logger, AverageMeter
+from utils.zero_shot import build_zero_shot_classifier, zero_shot_accuracy
+from utils.zero_shot_metadata import IMAGENET_CLASSNAMES, SIMPLE_IMAGENET_TEMPLATES
 from utils import config
 
 
@@ -44,7 +46,9 @@ def train(model: nn.Module,
     loss_meter = AverageMeter()
     start_time = time.time()
     with torch.autocast(device):
-        for i, (images, captions) in enumerate(tqdm(train_loader)):
+        for i, batch in enumerate(tqdm(train_loader)):
+            images = batch['images']
+            captions = batch['captions']
             output = model(images, captions)
             optimizer.zero_grad()
             loss = criterion(*output)
@@ -56,17 +60,42 @@ def train(model: nn.Module,
 
 def val(model: nn.Module,
         val_loader: DataLoader,
+        imagenet_loader: DataLoader,
         criterion: nn.Module,
         device: str):
     model.eval()
     loss_meter = AverageMeter()
     start_time = time.time()
     with torch.no_grad(), torch.autocast(device):
-        for i, (images, captions) in enumerate(tqdm(val_loader)):
+        for i, batch in enumerate(tqdm(val_loader)):
+            images = batch['images']
+            captions = batch['captions']
             output = model(images, captions)
             loss = criterion(*output)
             loss_meter.update(loss.item(), images.shape[0])
-    return loss_meter.avg, time.time() - start_time
+    text_features = build_zero_shot_classifier(
+        model, val_loader.dataset.tokenizer,
+        IMAGENET_CLASSNAMES, SIMPLE_IMAGENET_TEMPLATES, device
+    )
+    zero_shot_acc = zero_shot(model, text_features, imagenet_loader, device)
+
+    return loss_meter.avg, zero_shot_acc, time.time() - start_time
+
+
+def zero_shot(model: nn.Module,
+              text_features: torch.Tensor,
+              dataloader: DataLoader,
+              device: str):
+    model.eval()
+    acc_meter = AverageMeter()
+    with torch.no_grad(), torch.autocast(device):
+        for i, (images, labels) in enumerate(tqdm(dataloader)):
+            output = model(image=images)
+            image_features = output[0]
+            logits = 100 * image_features @ text_features
+            acc = zero_shot_accuracy(labels, logits)
+            acc_meter.update(acc, images.shape[0])
+    return acc_meter.avg
 
 
 def main():
@@ -106,7 +135,7 @@ def main():
         logger.log(f"Loaded checkpoint from {resume}")
     model.to(device)
 
-    train_loader, val_loader = config.get_data(configure, model)
+    train_loader, val_loader, imagenet_loader = config.get_data(configure, model)
 
     for epoch in range(start_epoch, epochs):
         logger.log(f"--------------- Epoch [{epoch+1}/{epochs}] ---------------")
@@ -115,9 +144,10 @@ def main():
         logger.log(f"Train Loss: {train_loss:.4f}\n"
                    f"Train Time: {train_time:.2f}s\n")
 
-        val_loss, val_time = val(model, val_loader, criterion, device)
+        val_loss, zero_shot_acc, val_time = val(model, val_loader, imagenet_loader, criterion, device)
         writer.add_scalar('val/loss', val_loss, epoch)
         logger.log(f"Val Loss: {val_loss:.4f}\n"
+                   f"Zero-Shot Acc: {zero_shot_acc:.4f}\n"
                    f"Val Time: {val_time:.2f}s\n")
 
         lr_scheduler.step(val_loss)

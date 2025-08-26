@@ -1,70 +1,70 @@
 import os
-import pandas as pd
-import requests
-from urllib.parse import urlparse
 import shutil
+import glob
+from typing import List
+from sklearn.model_selection import train_test_split
 
 
-def build_dataset(data_root: str, split: str, data_src: str):
-    """
-    Builds the dataset from the given tsv file and saves it in the specified directory.
-    :param data_root: path to save the dataset
-    :param split: ['train', 'val']
-    :param data_src: path to the tsv file with two columns —— caption and url
-    :return: None
-    """
-    assert split in ['train', 'val'], f"split must be 'train' or 'val', got {split}"
+"""
+img2dataset --url_list ConceptualCaptions --input_format "tsv" --url_col "URL" --caption_col "TEXT"
+            --output_format files --output_folder ConceptualCaptionsData --processes_count 16
+            --thread_count 64 --image_size 384 --resize_only_if_bigger=True --resize_mode="keep_ratio"
+            --skip_reencode=True --enable_wandb True
+"""
 
-    save_path = os.path.join(data_root, split)
-    image_dir = os.path.join(save_path, 'images')
-    os.makedirs(image_dir, exist_ok=True)
-
-    # read the tsv file
-    df = pd.read_csv(data_src, sep='\t', names=['caption', 'url'])
-
-    # download the images and save them in the specified directory
-    success_count = 0
-    fail_count = 0
-    for i, row in df.iterrows():
-        caption = row['caption']
-        url = row['url']
-
-        file_name = f"{i:08d}.jpg"
-        file_path = os.path.join(image_dir, file_name)
-        if os.path.exists(file_path):
-            success_count += 1
-            df.iloc[i, 1] = file_path
-            print(f"Downloaded {file_name}")
+def reorganize_dataset(data_root: str, exclude_dirs: List[str], val_ratio: float = 0.2, seed: int = 42):
+    data_dirs = glob.glob(os.path.join(data_root, '*'))
+    image_paths = []
+    caption_paths = []
+    metadata_paths = []
+    for data_dir in data_dirs:
+        if data_dir in exclude_dirs:
             continue
+        images = glob.glob(os.path.join(data_dir, '*.jpg'))
+        captions = glob.glob(os.path.join(data_dir, '*.txt'))
+        metadata = glob.glob(os.path.join(data_dir, '*.json'))
+        images.sort()
+        captions.sort()
+        metadata.sort()
+        image_paths.extend(images)
+        caption_paths.extend(captions)
+        metadata_paths.extend(metadata)
 
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-            "Accept": "image/webp,image/apng,image/*,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.9",
-            "Referer": "https://www.google.com/"  # 模拟从谷歌搜索跳转
-        }
+    totals = len(image_paths)
+    train_size = int(totals * (1 - val_ratio))
+    train_image_paths, val_image_paths, train_caption_paths, val_caption_paths, train_metadata_paths, val_metadata_paths = \
+        train_test_split(image_paths, caption_paths, metadata_paths, train_size=train_size, random_state=seed)
+    train_dir = os.path.join(data_root, 'train')
+    val_dir = os.path.join(data_root, 'val')
+    train_image_dir = os.path.join(train_dir, 'images')
+    val_image_dir = os.path.join(val_dir, 'images')
+    train_caption_dir = os.path.join(train_dir, 'captions')
+    val_caption_dir = os.path.join(val_dir, 'captions')
+    train_metadata_dir = os.path.join(train_dir,'metadata')
+    val_metadata_dir = os.path.join(val_dir,'metadata')
+    os.makedirs(train_image_dir, exist_ok=True)
+    os.makedirs(val_image_dir, exist_ok=True)
+    os.makedirs(train_caption_dir, exist_ok=True)
+    os.makedirs(val_caption_dir, exist_ok=True)
+    os.makedirs(train_metadata_dir, exist_ok=True)
+    os.makedirs(val_metadata_dir, exist_ok=True)
 
-        try:
-            with requests.get(url, stream=True, headers=headers, timeout=10) as r:
-                r.raise_for_status()  # 检查请求是否成功
+    for i, (image_path, caption_path, metadata_path) in enumerate(zip(train_image_paths, train_caption_paths, train_metadata_paths)):
+        new_image_path = os.path.join(train_image_dir, os.path.basename(image_path))
+        new_caption_path = os.path.join(train_caption_dir, os.path.basename(caption_path))
+        new_metadata_path = os.path.join(train_metadata_dir, os.path.basename(metadata_path))
+        shutil.copyfile(image_path, new_image_path)
+        shutil.copyfile(caption_path, new_caption_path)
+        shutil.copyfile(metadata_path, new_metadata_path)
 
-                with open(file_path, 'wb') as f:
-                    shutil.copyfileobj(r.raw, f)
-
-            success_count += 1
-            df.iloc[i, 1] = file_path
-            print(f"Downloaded {file_name}")
-        except Exception as e:
-            fail_count += 1
-            print(f"Failed to download {file_name} (error: {str(e)})")
-
-    df.to_csv(os.path.join(save_path, 'captions.tsv'), sep='\t', index=False, header=False)
-    print(f"Downloaded {success_count} images, failed to download {fail_count} images")
+    for i, (image_path, caption_path, metadata_path) in enumerate(zip(val_image_paths, val_caption_paths, val_metadata_paths)):
+        new_image_path = os.path.join(val_image_dir, os.path.basename(image_path))
+        new_caption_path = os.path.join(val_caption_dir, os.path.basename(caption_path))
+        new_metadata_path = os.path.join(val_metadata_dir, os.path.basename(metadata_path))
+        shutil.copyfile(image_path, new_image_path)
+        shutil.copyfile(caption_path, new_caption_path)
+        shutil.copyfile(metadata_path, new_metadata_path)
 
 
 if __name__ == "__main__":
-    build_dataset(
-        data_root=r"D:\DataSets\Img-Text\ConceptualCaptions",
-        split='train',
-        data_src="./Train_GCC-training.tsv"
-    )
+    reorganize_dataset(r"D:\DataSets\Img-Text\ConceptualCaptionsData", exclude_dirs=["_tmp"])

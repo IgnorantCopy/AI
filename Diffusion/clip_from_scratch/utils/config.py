@@ -4,13 +4,14 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
+from torchvision.datasets import ImageNet
 from typing import Tuple
 
 from ..models import clip
 from ..models.configs import VisualConfig, TextConfig
 from .transforms import ResizeKeepRatio, CropPad
 from .tokenizer import SimpleTokenizer
-from .dataset import TsvDataset
+from Diffusion.clip_from_scratch.data.dataset import WebImgDataset
 from .loss import CLIPLoss
 
 
@@ -119,8 +120,9 @@ def get_tokenizer(config: TextConfig):
     return SimpleTokenizer(context_length=seq_len)
 
 
-def get_data(config, model: clip.CLIP) -> Tuple[DataLoader, DataLoader]:
+def get_data(config, model: clip.CLIP) -> Tuple[DataLoader, DataLoader, DataLoader]:
     data_root = config["data_root"]
+    imagenet_root = config["imagenet_root"]
     train_config = config["train"]
     batch_size = train_config["batch_size"]
     num_workers = train_config["num_workers"]
@@ -128,9 +130,11 @@ def get_data(config, model: clip.CLIP) -> Tuple[DataLoader, DataLoader]:
     train_transform, val_transform = get_transform(model.visual_config)
     tokenizer = get_tokenizer(model.text_config)
 
-    train_dataset = TsvDataset(os.path.join(data_root, "train/filtered_captions.tsv"), train_transform, tokenizer)
-    val_dataset = TsvDataset(os.path.join(data_root, "val/filtered_captions.tsv"), val_transform, tokenizer)
+    train_dataset = WebImgDataset(os.path.join(data_root, "train/filtered_captions.tsv"), train_transform, tokenizer)
+    val_dataset = WebImgDataset(os.path.join(data_root, "val/filtered_captions.tsv"), val_transform, tokenizer)
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+    imagenet_val_dataset = ImageNet(imagenet_root, split='val', transform=val_transform)
+    imagenet_val_dataloader = DataLoader(imagenet_val_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
-    return train_dataloader, val_dataloader
+    return train_dataloader, val_dataloader, imagenet_val_dataloader

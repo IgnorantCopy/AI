@@ -171,4 +171,3 @@ Diffusion/CLIPtone/
 Diffusion/instruct_pix2pix/
 Diffusion/stablediffusion/
 Diffusion/open_clip/
-Diffusion/clip_from_scratch/data/*.tsv

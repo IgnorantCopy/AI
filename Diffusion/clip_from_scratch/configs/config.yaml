@@ -2,6 +2,8 @@ model_name: ViT_B_16
 
 data_root: D:/DataSets/Img-Text/ConceptualCaptions
 
+imagenet_root: D:/DataSets/CLS/ImageNet
+
 train:
   batch_size: 1024
   num_workers: 4
