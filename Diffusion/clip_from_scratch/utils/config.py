@@ -7,11 +7,11 @@ import torchvision.transforms as transforms
 from torchvision.datasets import ImageNet
 from typing import Tuple
 
-from ..models import clip
-from ..models.configs import VisualConfig, TextConfig
+from Diffusion.clip_from_scratch.models import clip
+from Diffusion.clip_from_scratch.models.configs import VisualConfig, TextConfig
+from Diffusion.clip_from_scratch.data.dataset import WebImgDataset
 from .transforms import ResizeKeepRatio, CropPad
 from .tokenizer import SimpleTokenizer
-from Diffusion.clip_from_scratch.data.dataset import WebImgDataset
 from .loss import CLIPLoss
 
 
@@ -55,7 +55,7 @@ def get_scheduler(optimizer: optim.Optimizer, config) -> optim.lr_scheduler:
 def get_loss(config) -> nn.Module:
     train_config = config['train']
     loss_config = train_config['loss']
-    name = loss_config['loss']
+    name = loss_config['name']
     if name == "CrossEntropyLoss":
         return nn.CrossEntropyLoss()
     elif name == "BCELoss":
@@ -130,10 +130,10 @@ def get_data(config, model: clip.CLIP) -> Tuple[DataLoader, DataLoader, DataLoad
     train_transform, val_transform = get_transform(model.visual_config)
     tokenizer = get_tokenizer(model.text_config)
 
-    train_dataset = WebImgDataset(os.path.join(data_root, "train/filtered_captions.tsv"), train_transform, tokenizer)
-    val_dataset = WebImgDataset(os.path.join(data_root, "val/filtered_captions.tsv"), val_transform, tokenizer)
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
-    val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+    train_dataset = WebImgDataset(os.path.join(data_root, "train"), train_transform, tokenizer)
+    val_dataset = WebImgDataset(os.path.join(data_root, "val"), val_transform, tokenizer)
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, collate_fn=WebImgDataset.collate_fn)
+    val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, collate_fn=WebImgDataset.collate_fn)
     imagenet_val_dataset = ImageNet(imagenet_root, split='val', transform=val_transform)
     imagenet_val_dataloader = DataLoader(imagenet_val_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 

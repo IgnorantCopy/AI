@@ -15,7 +15,6 @@ from utils.zero_shot_metadata import IMAGENET_CLASSNAMES, SIMPLE_IMAGENET_TEMPLA
 from utils import config
 
 
-
 def config_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config",   type=str, default="./configs/config.yaml", help="config file path")
@@ -49,6 +48,9 @@ def train(model: nn.Module,
         for i, batch in enumerate(tqdm(train_loader)):
             images = batch['images']
             captions = batch['captions']
+            images = images.to(device)
+            captions = captions.to(device)
+
             output = model(images, captions)
             optimizer.zero_grad()
             loss = criterion(*output)
@@ -70,6 +72,9 @@ def val(model: nn.Module,
         for i, batch in enumerate(tqdm(val_loader)):
             images = batch['images']
             captions = batch['captions']
+            images = images.to(device)
+            captions = captions.to(device)
+
             output = model(images, captions)
             loss = criterion(*output)
             loss_meter.update(loss.item(), images.shape[0])
@@ -90,6 +95,9 @@ def zero_shot(model: nn.Module,
     acc_meter = AverageMeter()
     with torch.no_grad(), torch.autocast(device):
         for i, (images, labels) in enumerate(tqdm(dataloader)):
+            images = images.to(device)
+            labels = labels.to(device)
+
             output = model(image=images)
             image_features = output[0]
             logits = 100 * image_features @ text_features
@@ -161,3 +169,7 @@ def main():
 
     logger.close()
     writer.close()
+
+
+if __name__ == '__main__':
+    main()

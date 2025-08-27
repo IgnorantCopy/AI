@@ -19,7 +19,7 @@ class PatchDropout(nn.Module):
         else:
             cls_tokens = torch.jit.annotate(torch.Tensor, x[:, :1])     # tell torchscript that cls_tokens is a tensor
 
-        batch_size, seq_len = x.shape
+        batch_size, seq_len, _ = x.shape
         batch_indices = torch.arange(batch_size).unsqueeze(-1)
         num_patches_keep = max(1, int(seq_len * (1 - self.prob)))
         rand = torch.randn((batch_size, seq_len))
@@ -60,6 +60,17 @@ class ResidualAttentionBlock(nn.Module):
         ]))
         self.ls2 = LayerScale(dim, ls_init_value) if ls_init_value is not None else nn.Identity()
 
+    def _attention(self,
+                   q: torch.Tensor,
+                   k: Optional[torch.Tensor] = None,
+                   v: Optional[torch.Tensor] = None,
+                   attn_mask: Optional[torch.Tensor] = None,
+    ) -> torch.Tensor:
+        k = q if k is None else k
+        v = q if v is None else v
+        attn_mask = attn_mask.to(q.dtype) if attn_mask is not None else None
+        return self.attention(q, k, v, attn_mask=attn_mask, need_weights=False)[0]
+
     def forward(
             self,
             q: torch.Tensor,
@@ -69,7 +80,7 @@ class ResidualAttentionBlock(nn.Module):
     ) -> torch.Tensor:
         k = self.ln_cross(k) if hasattr(self, "ln_cross") and k is not None else None
         v = self.ln_cross(v) if hasattr(self, "ln_cross") and v is not None else None
-        x = q + self.ls1(self.attention(self.ln1(q), k, v, attn_mask=attn_mask))
+        x = q + self.ls1(self._attention(self.ln1(q), k, v, attn_mask=attn_mask))
         x = x + self.ls2(self.mlp(self.ln2(x)))
         return x
 

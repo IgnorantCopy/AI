@@ -2,9 +2,9 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Optional, Dict, Tuple
+from typing import Optional, Union, Dict, Tuple
 
-from configs import VisualConfig, TextConfig
+from .configs import VisualConfig, TextConfig
 
 
 class QuickGELU(nn.Module):
@@ -45,7 +45,7 @@ class CLIP(nn.Module):
                 width=visual_config.dim,
             )
         else:
-            from transformers import ViT
+            from .transformers import ViT
             vision_heads = visual_config.dim // visual_config.head_width
             return ViT(
                 image_size=visual_config.image_size,
@@ -106,7 +106,7 @@ class CLIP(nn.Module):
             self,
             image: Optional[torch.Tensor] = None,
             text: Optional[torch.Tensor] = None
-    ) -> Optional[Dict[str, torch.Tensor], Tuple[torch.Tensor, torch.Tensor, torch.Tensor, Optional[torch.Tensor]]]:
+    ) -> Union[Dict[str, torch.Tensor], Tuple[torch.Tensor, torch.Tensor, torch.Tensor, Optional[torch.Tensor]]]:
         image_features = self.encode_image(image, normalize=True) if image is not None else None
         text_features = self.encode_text(text, normalize=True) if text is not None else None
 

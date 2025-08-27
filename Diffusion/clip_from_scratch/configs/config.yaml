@@ -1,6 +1,6 @@
 model_name: ViT_B_16
 
-data_root: D:/DataSets/Img-Text/ConceptualCaptions
+data_root: D:/DataSets/Img-Text/ConceptualCaptionsData
 
 imagenet_root: D:/DataSets/CLS/ImageNet
 

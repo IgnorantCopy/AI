@@ -1,7 +1,7 @@
 import os
 import shutil
 import glob
-from typing import List
+from tqdm import tqdm
 from sklearn.model_selection import train_test_split
 
 
@@ -12,13 +12,13 @@ img2dataset --url_list ConceptualCaptions --input_format "tsv" --url_col "URL" -
             --skip_reencode=True --enable_wandb True
 """
 
-def reorganize_dataset(data_root: str, exclude_dirs: List[str], val_ratio: float = 0.2, seed: int = 42):
+def reorganize_dataset(data_root: str, val_ratio: float = 0.2, seed: int = 42):
     data_dirs = glob.glob(os.path.join(data_root, '*'))
     image_paths = []
     caption_paths = []
     metadata_paths = []
-    for data_dir in data_dirs:
-        if data_dir in exclude_dirs:
+    for data_dir in tqdm(data_dirs, desc="Collecting data"):
+        if not os.path.isdir(data_dir):
             continue
         images = glob.glob(os.path.join(data_dir, '*.jpg'))
         captions = glob.glob(os.path.join(data_dir, '*.txt'))
@@ -31,6 +31,7 @@ def reorganize_dataset(data_root: str, exclude_dirs: List[str], val_ratio: float
         metadata_paths.extend(metadata)
 
     totals = len(image_paths)
+    print(f"Total images: {totals}")
     train_size = int(totals * (1 - val_ratio))
     train_image_paths, val_image_paths, train_caption_paths, val_caption_paths, train_metadata_paths, val_metadata_paths = \
         train_test_split(image_paths, caption_paths, metadata_paths, train_size=train_size, random_state=seed)
@@ -49,7 +50,8 @@ def reorganize_dataset(data_root: str, exclude_dirs: List[str], val_ratio: float
     os.makedirs(train_metadata_dir, exist_ok=True)
     os.makedirs(val_metadata_dir, exist_ok=True)
 
-    for i, (image_path, caption_path, metadata_path) in enumerate(zip(train_image_paths, train_caption_paths, train_metadata_paths)):
+    for i, (image_path, caption_path, metadata_path) in \
+            tqdm(enumerate(zip(train_image_paths, train_caption_paths, train_metadata_paths)), desc="Copying train data"):
         new_image_path = os.path.join(train_image_dir, os.path.basename(image_path))
         new_caption_path = os.path.join(train_caption_dir, os.path.basename(caption_path))
         new_metadata_path = os.path.join(train_metadata_dir, os.path.basename(metadata_path))
@@ -57,7 +59,8 @@ def reorganize_dataset(data_root: str, exclude_dirs: List[str], val_ratio: float
         shutil.copyfile(caption_path, new_caption_path)
         shutil.copyfile(metadata_path, new_metadata_path)
 
-    for i, (image_path, caption_path, metadata_path) in enumerate(zip(val_image_paths, val_caption_paths, val_metadata_paths)):
+    for i, (image_path, caption_path, metadata_path) in \
+            tqdm(enumerate(zip(val_image_paths, val_caption_paths, val_metadata_paths)), desc="Copying val data"):
         new_image_path = os.path.join(val_image_dir, os.path.basename(image_path))
         new_caption_path = os.path.join(val_caption_dir, os.path.basename(caption_path))
         new_metadata_path = os.path.join(val_metadata_dir, os.path.basename(metadata_path))
@@ -67,4 +70,4 @@ def reorganize_dataset(data_root: str, exclude_dirs: List[str], val_ratio: float
 
 
 if __name__ == "__main__":
-    reorganize_dataset(r"D:\DataSets\Img-Text\ConceptualCaptionsData", exclude_dirs=["_tmp"])
+    reorganize_dataset(r"D:\DataSets\Img-Text\ConceptualCaptionsData")
