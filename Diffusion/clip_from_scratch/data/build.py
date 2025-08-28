@@ -6,9 +6,9 @@ from sklearn.model_selection import train_test_split
 
 
 """
-img2dataset --url_list ConceptualCaptions --input_format "tsv" --url_col "URL" --caption_col "TEXT"
-            --output_format files --output_folder ConceptualCaptionsData --processes_count 16
-            --thread_count 64 --image_size 384 --resize_only_if_bigger=True --resize_mode="keep_ratio"
+img2dataset --url_list ConceptualCaptions --input_format "tsv" --url_col "URL" --caption_col "TEXT" \
+            --output_format files --output_folder ConceptualCaptionsData --processes_count 16 \
+            --thread_count 64 --image_size 384 --resize_only_if_bigger=True --resize_mode="keep_ratio" \
             --skip_reencode=True --enable_wandb True
 """
 

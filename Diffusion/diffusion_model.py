@@ -2,11 +2,12 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from functorch.einops import rearrange
+from einops import rearrange
+from typing import Optional, Tuple
 
 
 class Attention(nn.Module):
-    def __init__(self, embed_dim, hidden_dim, context_dim=None, num_heads=4):
+    def __init__(self, embed_dim: int, hidden_dim: int, context_dim: Optional[int] = None, num_heads: int = 4):
         super().__init__()
         self.embed_dim = embed_dim
         self.hidden_dim = hidden_dim
@@ -15,33 +16,31 @@ class Attention(nn.Module):
         self.context_dim = context_dim if context_dim is not None else embed_dim
         self.self_attention = context_dim is None
 
-        self.Q = nn.Linear(self.hidden_dim, self.embed_dim, bias=False)
-        self.K = nn.Linear(self.context_dim, self.embed_dim, bias=False)
-        self.V = nn.Linear(self.context_dim, self.embed_dim, bias=False)
-        self.out = nn.Linear(self.embed_dim, self.hidden_dim)
+        self.q_proj = nn.Linear(self.hidden_dim, self.embed_dim, bias=False)
+        self.k_proj = nn.Linear(self.context_dim, self.embed_dim, bias=False)
+        self.v_proj = nn.Linear(self.context_dim, self.embed_dim, bias=False)
+        self.out_proj = nn.Linear(self.embed_dim, self.hidden_dim)
 
     def forward(self, tokens, t=None, context=None):
-        B, T, _ = tokens.shape
-        H = self.num_heads
-        Q = self.Q(tokens).view(B, T, H, self.head_dim).transpose(1, 2)
+        batch_size, seq_len, _ = tokens.shape
+        q = self.q_proj(tokens).view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
 
         if self.self_attention:
-            K = self.K(tokens).view(B, T, H, self.head_dim).transpose(1, 2)
-            V = self.V(tokens).view(B, T, H, self.head_dim).transpose(1, 2)
+            k = self.k_proj(tokens).view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
+            v = self.v_proj(tokens).view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1, 2)
         else:
-            _, context_len, context_C = context.shape
-            if context_C != self.context_dim:
-                context = nn.Linear(context_C, self.context_dim).to(context.device)(context)
-                context_C = self.context_dim
-            K = self.K(context).view(B, context_len, H, self.head_dim).transpose(1, 2)
-            V = self.V(context).view(B, context_len, H, self.head_dim).transpose(1, 2)
+            _, context_len, context_channels = context.shape
+            if context_channels != self.context_dim:
+                context = nn.Linear(context_channels, self.context_dim).to(context.device)(context)
+            k = self.k_proj(context).view(batch_size, context_len, self.num_heads, self.head_dim).transpose(1, 2)
+            v = self.v_proj(context).view(batch_size, context_len, self.num_heads, self.head_dim).transpose(1, 2)
 
-        attention_scores = torch.matmul(Q, K.transpose(-1, -2)) / math.sqrt(self.head_dim)
+        attention_scores = torch.matmul(q, k.transpose(-1, -2)) / math.sqrt(self.head_dim)
         attention_scores = F.softmax(attention_scores, dim=-1)
 
-        out = torch.matmul(attention_scores, V)
-        out = out.transpose(1, 2).contiguous().view(B, T, self.embed_dim)
-        out = self.out(out)
+        out = torch.matmul(attention_scores, v)
+        out = out.transpose(1, 2).contiguous().view(batch_size, seq_len, self.embed_dim)
+        out = self.out_proj(out)
         return out
 
 
@@ -50,8 +49,8 @@ class TransformerBlock(nn.Module):
         super().__init__()
         self.use_self_attention = use_self_attention
         self.use_cross_attention = use_cross_attention
-        self.self_attention = Attention(hidden_dim, hidden_dim, num_heads=num_heads)
-        self.cross_attention = Attention(hidden_dim, hidden_dim, context_dim=context_dim, num_heads=num_heads)
+        self.self_attention = Attention(hidden_dim, hidden_dim, num_heads=num_heads) if use_self_attention else None
+        self.cross_attention = Attention(hidden_dim, hidden_dim, context_dim=context_dim, num_heads=num_heads) if use_cross_attention else None
 
         self.norm1 = nn.LayerNorm(hidden_dim)
         self.norm2 = nn.LayerNorm(hidden_dim)
@@ -212,7 +211,8 @@ class UNet(nn.Module):
             nn.Conv2d(64, in_channels, kernel_size=3, padding=1),
         )
 
-    def get_sin_position_embedding(self, t, embedding_dim):
+    @staticmethod
+    def get_sin_position_embedding(t, embedding_dim):
         half = embedding_dim // 2
         emb = math.log(10000) / (half - 1)
         emb = torch.exp(torch.arange(half, device=t.device, dtype=torch.float32) * -emb)
@@ -229,7 +229,7 @@ class UNet(nn.Module):
         return UpSample(in_channels, out_channels, time_dim, use_self_attention, use_cross_attention, num_heads, context_dim or self.context_dim)
 
     def forward(self, x, t, y):
-        residual = x
+        identity = x
         if y.dim() == 2:
             y.unsqueeze(1)
         t = self.get_sin_position_embedding(t, self.time_dim)
@@ -249,10 +249,10 @@ class UNet(nn.Module):
         x = self.out[0](x, t)
         for layer in self.out[1:]:
             x = layer(x)
-        return x + residual
+        return x + identity
 
 
-class NoiseScheduler(nn.Module):
+class NoiseScheduler:
     def __init__(self, T, device):
         super().__init__()
         self.T = T

@@ -8,6 +8,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
+from torch.amp import autocast, GradScaler
 
 from utils.logger import Logger, AverageMeter
 from utils.zero_shot import build_zero_shot_classifier, zero_shot_accuracy
@@ -38,30 +39,34 @@ def save_model(model, optimizer, lr_scheduler, epoch, best_loss, filename):
 
 def train(model: nn.Module,
           train_loader: DataLoader,
+          scaler: GradScaler,
           optimizer: optim.Optimizer,
           criterion: nn.Module,
           device: str):
     model.train()
     loss_meter = AverageMeter()
     start_time = time.time()
-    with torch.autocast(device):
-        for i, batch in enumerate(tqdm(train_loader)):
-            images = batch['images']
-            captions = batch['captions']
-            images = images.to(device)
-            captions = captions.to(device)
+    for i, batch in enumerate(tqdm(train_loader)):
+        images = batch['images']
+        captions = batch['captions']
+        images = images.to(device)
+        captions = captions.to(device)
 
+        with autocast(device):
             output = model(images, captions)
-            optimizer.zero_grad()
             loss = criterion(*output)
-            loss.backward()
-            optimizer.step()
-            loss_meter.update(loss.item(), images.shape[0])
+
+        optimizer.zero_grad()
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
+        loss_meter.update(loss.item(), images.shape[0])
     return loss_meter.avg, time.time() - start_time
 
 
 def val(model: nn.Module,
         val_loader: DataLoader,
+        scaler: GradScaler,
         imagenet_loader: DataLoader,
         criterion: nn.Module,
         device: str):
@@ -75,8 +80,11 @@ def val(model: nn.Module,
             images = images.to(device)
             captions = captions.to(device)
 
-            output = model(images, captions)
-            loss = criterion(*output)
+            with autocast(device):
+                output = model(images, captions)
+                loss = criterion(*output)
+            scaler.scale(loss)
+            scaler.update()
             loss_meter.update(loss.item(), images.shape[0])
     text_features = build_zero_shot_classifier(
         model, val_loader.dataset.tokenizer,
@@ -93,14 +101,15 @@ def zero_shot(model: nn.Module,
               device: str):
     model.eval()
     acc_meter = AverageMeter()
-    with torch.no_grad(), torch.autocast(device):
+    with torch.no_grad():
         for i, (images, labels) in enumerate(tqdm(dataloader)):
             images = images.to(device)
             labels = labels.to(device)
 
-            output = model(image=images)
-            image_features = output[0]
-            logits = 100 * image_features @ text_features
+            with autocast(device):
+                output = model(image=images)
+                image_features = output[0]
+                logits = 100 * image_features @ text_features
             acc = zero_shot_accuracy(labels, logits)
             acc_meter.update(acc, images.shape[0])
     return acc_meter.avg
@@ -147,12 +156,14 @@ def main():
 
     for epoch in range(start_epoch, epochs):
         logger.log(f"--------------- Epoch [{epoch+1}/{epochs}] ---------------")
-        train_loss, train_time = train(model, train_loader, optimizer, criterion, device)
+        train_scaler = GradScaler()
+        train_loss, train_time = train(model, train_loader, train_scaler, optimizer, criterion, device)
         writer.add_scalar('train/loss', train_loss, epoch)
         logger.log(f"Train Loss: {train_loss:.4f}\n"
                    f"Train Time: {train_time:.2f}s\n")
 
-        val_loss, zero_shot_acc, val_time = val(model, val_loader, imagenet_loader, criterion, device)
+        val_scaler = GradScaler()
+        val_loss, zero_shot_acc, val_time = val(model, val_loader, val_scaler, imagenet_loader, criterion, device)
         writer.add_scalar('val/loss', val_loss, epoch)
         logger.log(f"Val Loss: {val_loss:.4f}\n"
                    f"Zero-Shot Acc: {zero_shot_acc:.4f}\n"
