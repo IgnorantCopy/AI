@@ -34,6 +34,8 @@ class WebImgDataset(Dataset):
             caption = f.readline()
         if self.tokenizer is not None:
             caption = self.tokenizer(caption)
+        if len(caption.shape) == 2:
+            caption = caption.squeeze(0)
         return caption
 
     def _load_metadata(self, idx):

@@ -8,7 +8,8 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-from torch.amp import autocast, GradScaler
+from torch.amp.grad_scaler import GradScaler
+from torch.amp.autocast_mode import autocast
 
 from utils.logger import Logger, AverageMeter
 from utils.zero_shot import build_zero_shot_classifier, zero_shot_accuracy
@@ -84,7 +85,6 @@ def val(model: nn.Module,
                 output = model(images, captions)
                 loss = criterion(*output)
             scaler.scale(loss)
-            scaler.update()
             loss_meter.update(loss.item(), images.shape[0])
     text_features = build_zero_shot_classifier(
         model, val_loader.dataset.tokenizer,

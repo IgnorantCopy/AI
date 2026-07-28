@@ -167,8 +167,6 @@ PyTorch/data/
 CV/models/
 CV/U-2-Net/
 CV/yolo/PyTorch-YOLOv3/
-Diffusion/CLIPtone/
-Diffusion/instruct_pix2pix/
-Diffusion/stablediffusion/
-Diffusion/open_clip/
 Diffusion/clip_from_scratch/logs/
+NLP/cls/data/
+NLP/cls/logs/

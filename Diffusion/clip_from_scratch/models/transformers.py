@@ -59,7 +59,12 @@ class ResidualAttentionBlock(nn.Module):
             ("fc_out", nn.Linear(fc_dim, dim))
         ]))
         self.ls2 = LayerScale(dim, ls_init_value) if ls_init_value is not None else nn.Identity()
-
+    
+    def get_weight_type(self) -> torch.dtype:
+        if hasattr(self.mlp.fc_in, "int8_original_dtype"):
+            return self.mlp.fc_in.int8_original_dtype
+        return self.mlp.fc_in.weight.dtype
+    
     def _attention(self,
                    q: torch.Tensor,
                    k: Optional[torch.Tensor] = None,
@@ -117,7 +122,10 @@ class Transformer(nn.Module):
             )
             for _ in range(layers)
         ])
-
+    
+    def get_cast_type(self) -> torch.dtype:
+        return self.res_blocks[0].get_weight_type()
+    
     def forward(self, x: torch.Tensor, attn_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
         if not self.batch_first:
             x = x.transpose(0, 1).contiguous()
@@ -398,8 +406,10 @@ class TextTransformer(nn.Module):
                 nn.init.normal_(self.text_proj, std=attn_std)
 
     def _embedding(self, text: torch.Tensor) -> Tuple[torch.Tensor, Optional[torch.Tensor]]:
+        cast_type = self.transformer.get_cast_type()
         batch_size, seq_len = text.shape
-        x = self.token_embedding(text).to(text.dtype)
+        
+        x = self.token_embedding(text).to(cast_type)
 
         if self.cls_embedding is not None:
             cls_token = repeat(self.cls_embedding, "d -> b 1 d", b=batch_size)
@@ -415,7 +425,7 @@ class TextTransformer(nn.Module):
             else:
                 attn_mask = attn_mask[:seq_len, :seq_len].unsqueeze(0) + add_mask
 
-        x = x + self.pos_embedding[:seq_len].to(x.dtype)
+        x = x + self.pos_embedding[:seq_len].to(cast_type)
         return x, attn_mask
 
     def _global_pooling(self, x: torch.Tensor, text: Optional[torch.Tensor] = None) -> torch.Tensor:

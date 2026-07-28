@@ -1,0 +1,22 @@
+model:
+  embedding_dim: 100
+  hidden_dim: 512
+  num_classes: 5
+  lstm_layers: 0
+  dropout: 0.2
+
+
+data:
+  root: ./data
+  max_length: 50
+  batch_size: 256
+  use_bert: true
+
+
+train:
+  epochs: 10
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  log_dir: ./logs
+  save_freq: 10
+  seed: 42

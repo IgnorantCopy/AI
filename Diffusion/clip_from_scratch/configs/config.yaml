@@ -1,11 +1,11 @@
-model_name: ViT_B_16
+model_name: ViT_S_16
 
-data_root: D:/DataSets/Img-Text/ConceptualCaptionsData
+data_root: /home/nju-student/mkh/datasets/ConceptualCaptionsData
 
-imagenet_root: D:/DataSets/CLS/ImageNet
+imagenet_root: /home/nju-student/mkh/datasets/ImageNet
 
 train:
-  batch_size: 1024
+  batch_size: 256
   num_workers: 4
   lr: 0.01
   epochs: 100

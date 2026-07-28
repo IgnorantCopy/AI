@@ -7,9 +7,9 @@ import torchvision.transforms as transforms
 from torchvision.datasets import ImageNet
 from typing import Tuple
 
-from Diffusion.clip_from_scratch.models import clip
-from Diffusion.clip_from_scratch.models.configs import VisualConfig, TextConfig
-from Diffusion.clip_from_scratch.data.dataset import WebImgDataset
+from models import clip
+from models.configs import VisualConfig, TextConfig
+from data.dataset import WebImgDataset
 from .transforms import ResizeKeepRatio, CropPad
 from .tokenizer import SimpleTokenizer
 from .loss import CLIPLoss
@@ -68,32 +68,11 @@ def get_loss(config) -> nn.Module:
 
 def get_model(config) -> clip.CLIP:
     name = config["model_name"]
-    if name == "ViT_S_16":
-        return clip.ViT_S_16()
-    elif name == "ViT_S_32":
-        return clip.ViT_S_32()
-    elif name == "ViT_M_16":
-        return clip.ViT_M_16()
-    elif name == "ViT_M_32":
-        return clip.ViT_M_32()
-    elif name == "ViT_B_16":
-        return clip.ViT_B_16()
-    elif name == "ViT_B_32":
-        return clip.ViT_B_32()
-    elif name == "ViT_L_14":
-        return clip.ViT_L_14()
-    elif name == "ViT_L_16":
-        return clip.ViT_L_16()
-    elif name == "ViT_H_14":
-        return clip.ViT_H_14()
-    elif name == "ViT_H_16":
-        return clip.ViT_H_16()
-    elif name == "ResNet_50":
-        return clip.ResNet_50()
-    elif name == "ResNet_101":
-        return clip.ResNet_101()
-    else:
+    try:
+        model = getattr(clip, name)()
+    except AttributeError:
         raise ValueError(f"Unsupported model: {name}")
+    return model
 
 
 def get_transform(config: VisualConfig) -> Tuple[transforms.Compose, transforms.Compose]:
